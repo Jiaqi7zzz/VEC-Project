@@ -30,8 +30,9 @@ def astar(start, goal, grid):
     start_node = Node(start)
     goal_node = Node(goal)
     heapq.heappush(open_list, start_node)
-    directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+    # directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
                 #   ,(-1, -1), (-1, 1), (1, -1), (1, 1)]
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1),(-1,-1),(-1,1),(1,-1),(1,1)]
 
     while open_list:
         current_node = heapq.heappop(open_list)
@@ -81,14 +82,21 @@ goal = (0,2)
 
 path = astar(start, goal, data)
 x = [point[0] for point in path]
-y = [50-point[1] for point in path]
+y = [len(data[0]) - point[1] for point in path]
 # f = interp1d(x, y, kind='linear')
 # x_interp = np.linspace(min(x), max(x), 100)
 # y_interp = f(x_interp)
 # plt.plot(x_interp, y_interp)
 # plt.show()
 
-plt.plot(x,y)
+plt.plot(y,x)
+plt.gca().invert_yaxis()
+plt.gca().invert_xaxis()
+plt.gca().xaxis.set_ticklabels([])
+plt.gca().yaxis.set_ticklabels([])
+plt.scatter(len(data[0]) - start[1],start[0],color = "red" ,s = 200)
+plt.scatter(len(data[0]) - goal[1],goal[0],color = "green" , s = 200)
+# plt.show()
 plt.savefig("../data/path.png")
 with open("../data/pathpoint.txt","w") as file:
     for point in path:
