@@ -1,3 +1,21 @@
+<!-- 引入 KaTeX 的 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+<!-- 引入 KaTeX 的 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js"></script>
+
+<!-- 渲染数学公式 -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+        ]
+    });
+});
+</script>
 ### 整体目标
 给定地图与市区内的初始点和目的地，确定一条最短的路线，控制汽车的**油门**、**刹车**、**方向盘**，实现自动驾驶功能。
 
