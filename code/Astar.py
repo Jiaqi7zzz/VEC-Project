@@ -22,7 +22,8 @@ class Node:
         return self.position == other.position
 
 def gdist(position1, position2):
-    return math.sqrt((position1[0] - position2[0]) ** 2 + (position1[1] - position2[1]) ** 2)
+    dist : float = math.sqrt((position1[0] - position2[0]) ** 2 + (position1[1] - position2[1]) ** 2)
+    return dist
 
 def astar(start, goal, grid):
     open_list = []
@@ -51,7 +52,7 @@ def astar(start, goal, grid):
             next_y = current_node.position[1] + direction[1]
             next_node = Node((next_x, next_y), current_node)
 
-            if next_x < 0 or next_x >= len(grid) or next_y < 0 or next_y >= len(grid[0]) or grid[next_x][next_y] == 1:
+            if next_x < 0 or next_x >= len(grid) or next_y < 0 or next_y >= len(grid[0]) or grid[next_x][next_y] == 0:
                 continue
 
             next_node.g = current_node.g + gdist(next_node.position, current_node.position)
@@ -72,15 +73,17 @@ def astar(start, goal, grid):
     return None
 
 
-data = pd.read_excel("../data/MapMatrix.xlsx" , header = None)
+data = pd.read_excel("../data/map.xlsx" , header = None)
 data = data.to_numpy()
 # plt.imshow(data , cmap = 'binary' , interpolation = 'nearest')
 # plt.axis("off")
 # plt.savefig("../data/binaryMap.png")
-start = (33,45)
-goal = (0,2)
+start = (282,377)
+goal = (0,25)
 
 path = astar(start, goal, data)
+print(path)
+
 x = [point[0] for point in path]
 y = [len(data[0]) - point[1] for point in path]
 # f = interp1d(x, y, kind='linear')
