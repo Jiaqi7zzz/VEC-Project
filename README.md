@@ -7,15 +7,15 @@
 * 横向控制：利用Stanley控制器，对方向盘进行建模，根据路径，利用PD控制模拟汽车的循迹路线  
 
   ***Stanley控制器***：
-  $
+  $$
   \delta = \psi + \tan^{-1}\cfrac{ke}{v}
-  $
+  $$
 * 纵向控制：利用PID控制器，对油门和刹车进行建模，利用PD控制模拟汽车的运行速度  
 
   ***PID控制器***：
-  $
+  $$
   u = K_pe(t) + K_i\int_0^t e(t)\mathrm{d}t + K_d\cfrac{\mathrm{d}e(t)}{\mathrm{d}t}
-  $
+  $$
 * 得到仿真动画
 
 
