@@ -26,6 +26,6 @@
 
 https://github.com/ahmedmoawad124/Self-Driving-Vehicle-Control
 https://blog.csdn.net/zgpeace/article/details/121643308
-
+https://zhuanlan.zhihu.com/p/469303639
 
 #### 2024/03/01更新：利用图像处理技术，增加池化层处理地图数据，省去人工标注流程
