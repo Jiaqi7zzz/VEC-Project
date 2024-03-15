@@ -1,3 +1,6 @@
+'''
+处理地图数据得到灰度图
+'''
 from PIL import Image
 import numpy as np
 import pandas as pd

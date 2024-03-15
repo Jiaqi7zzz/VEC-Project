@@ -1,3 +1,6 @@
+'''
+对得到的路径进行平滑化
+'''
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
@@ -18,27 +21,35 @@ def bezier(Ps,n,t):
 
 path_x = []
 path_y = []
-points = np.arange(0 , len(path) , 10)
+points = np.arange(0 , len(path) , 20)
 for i in tqdm(range(1 , len(points))):
-    for t in np.arange(0,1,0.005):
+    for t in np.arange(0,1,0.5):
         pos = bezier(np.array(path[points[i - 1] : points[i]]) , len(path[points[i - 1] : points[i]]) , t)
-        path_x.append(np.round(pos[0] , 2))
-        path_y.append(np.round(pos[1] , 2))
+        path_x.append(np.round(pos[0] , 0))
+        path_y.append(np.round(pos[1] , 0))
 
 data = pd.read_excel("../data/map.xlsx" , header = None)
 data = data.to_numpy()
-# path_y = [len(data[0]) - point for point in path_y]
 
-# start = (282,377)
-# goal = (0,25)
-# plt.plot(path_y , path_x)
-# plt.gca().invert_yaxis()
-# plt.gca().invert_xaxis()
+# 都变成负的然后加上最大值
+dx = max(path_x)
+dy = max(path_y)
+path_y = [-point + dy for point in path_y]
+path_X = [-point + dx for point in path_x]
+temp_x = path_x.copy()
+path_x = [-point + dy for point in path_y]
+path_y = [-point + dx for point in temp_x]
+start = (282,377)
+goal = (0,25)
+# plt.plot(path_x , path_y)
+# # plt.gca().invert_yaxis()
+# # plt.gca().invert_xaxis()
+# plt.show()
 # plt.gca().xaxis.set_ticklabels([])
 # plt.gca().yaxis.set_ticklabels([])
 # plt.scatter(len(data[0]) - start[1],start[0],color = "red" ,s = 200)
 # plt.scatter(len(data[0]) - goal[1],goal[0],color = "green" , s = 200)
-# # plt.savefig("../image/bezier_path.png")
+# plt.savefig("../image/bezier_path_new.png")
 # plt.show()
 
 
@@ -51,4 +62,4 @@ path_new.append(path_x)
 path_new.append(path_y)
 df = pd.DataFrame(path_new)
 df = df.T
-df.to_csv("../data/path_T.csv" , header=None , index=None)
+df.to_csv("../data/path.csv" , header=None , index=None)

@@ -1,3 +1,6 @@
+'''
+根据灰度图获得最佳的路径
+'''
 import math
 import heapq
 import time
@@ -100,7 +103,7 @@ plt.gca().yaxis.set_ticklabels([])
 plt.scatter(len(data[0]) - start[1],start[0],color = "red" ,s = 200)
 plt.scatter(len(data[0]) - goal[1],goal[0],color = "green" , s = 200)
 # plt.show()
-plt.savefig("../data/path.png")
+plt.savefig("../image/path.png")
 with open("../data/pathpoint.txt","w") as file:
     for point in path:
         file.write("(" + str(point[0]) + " , " + str(point[1]) + ")" + "\n")
