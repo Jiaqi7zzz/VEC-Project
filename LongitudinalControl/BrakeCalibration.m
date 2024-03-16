@@ -1,7 +1,7 @@
 brake=0;% 初始化刹车
 for i=1:80
 
-    sim('Throttle.slx');
+    sim('LongitudinalControl.slx');
     v_temp1(:,i) = ans.Vx(:,2);
     a_temp1(:,i) = ans.Ax(:,2);
     brake_temp1(:,i)=ones(length(ans.Vx(:,2)),1)*brake;

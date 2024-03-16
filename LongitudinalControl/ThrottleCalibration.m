@@ -4,7 +4,7 @@ clear;
 thr= 0 ;
 
 for i = 1:21
-    sim('Throttle.slx');
+    sim('LongitudinalControl.slx');
 
     v_temp(:,i) = ans.Vx(:,2);
     a_temp(:,i) = ans.Ax(:,2);
